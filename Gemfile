@@ -9,7 +9,7 @@ gem "rails", "~> 7.1.0"
 gem "sprockets-rails"
 
 # Use mysql as the database for Active Record
-# gem "mysql2", "~> 0.5"
+gem "mysql2", "~> 0.5" # MySQL用アダプタ
 
 # Use PostgreSQL as the database for Active Record
 gem "pg"
@@ -48,7 +48,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'dotenv-rails'
   gem "debug", platforms: %i[ mri windows ]
 end
 
