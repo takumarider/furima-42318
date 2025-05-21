@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   end
 
   def basic_auth_required?
-    Rails.env.development? || Rails.env.production?
+    result = Rails.env.development? || Rails.env.production?
+    Rails.logger.info "basic_auth_required? => #{result}, Rails.env: #{Rails.env}"
+    result
   end
 end
