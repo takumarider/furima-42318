@@ -23,7 +23,7 @@
 |:---------------------|:----------|:------------------------------|
 | name                 | string    | null: false                   |
 | description          | text      | null: false                   |
-| price_id             | integer   | null: false                   |
+| price                | integer   | null: false                   |
 | category_id          | integer   | null: false                   |
 | status_id            | integer   | null: false                   |
 | shipping_fee_id      | integer   | null: false                   |
