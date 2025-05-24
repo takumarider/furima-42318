@@ -50,6 +50,9 @@ gem "bootsnap", require: false
 group :development, :test do
   gem 'dotenv-rails'
   gem "debug", platforms: %i[ mri windows ]
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -70,3 +73,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem 'devise'
