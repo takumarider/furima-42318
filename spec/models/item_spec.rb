@@ -78,6 +78,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
      end
+
+      it '価格に全角文字が含まれていると出品できない' do
+        @item.price = "３０００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
+      it 'userが紐づいていないと出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
    end
  end
 end
