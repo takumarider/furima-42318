@@ -21,6 +21,7 @@ RSpec.describe Item, type: :model do
 
       it '商品名が空だと出品できない' do
         @item.name = ''
+        @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
 
