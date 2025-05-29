@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name { "MyString" }
-    description { "MyText" }
+    name { 'MyString' }
+    description { 'MyText' }
     category_id { 2 }
     status_id { 2 }
     shipping_fee_id { 2 }
@@ -19,7 +19,7 @@ FactoryBot.define do
     # ActiveStorageを使う場合、以下のようにafter(:build)で画像を添付します。
     # ただし、画像ファイルが存在することを確認してください。
     # 画像ファイルがない場合は、適切なパスに画像を配置してください。
-     after(:build) do |item|
+    after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
   end
