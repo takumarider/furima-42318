@@ -9,6 +9,26 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    unless @item.user == current_user
+      redirect_to root_path, alert: 'この商品は編集できません'
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '商品情報を更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+  
   def create
     @item = Item.new(item_params)
     @item.user = current_user
