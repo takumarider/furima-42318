@@ -22,8 +22,8 @@
         <%= @item.shipping_fee.name %>
       </span>
     </div>
-    <% if @item.present? %>
-     <span class="sold-out">Sold Out</span>
+    <%# if @item.present? %>
+     <%#<span class="sold-out">Sold Out</span>
       <% end %>
       <% if user_signed_in? %>
         <% if current_user == @item.user %>
