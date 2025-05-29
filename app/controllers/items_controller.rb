@@ -15,9 +15,9 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    unless @item.user == current_user
-      redirect_to root_path, alert: 'この商品は編集できません'
-    end
+    return if @item.user == current_user
+
+    redirect_to root_path, alert: 'この商品は編集できません'
   end
 
   def update
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
   def create
     @item = Item.new(item_params)
     @item.user = current_user
