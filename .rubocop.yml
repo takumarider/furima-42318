@@ -1,8 +1,7 @@
 AllCops:
-NewCops: enable
-# 除外するディレクトリ（自動生成されたファイル）
-# デフォルト設定にある"vendor/**/*"が無効化されないように記述
- Exclude:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+  Exclude:
    - "vendor/**/*" # rubocop config/default.yml
    - "db/**/*"
    - "config/**/*"
