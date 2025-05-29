@@ -129,21 +129,14 @@
  <% if @items.present? %>
    <% @items.each do |item| %>
      <li class='list'>
-       <%= link_to item_path(item) do %>
+       <%= link_to '#' do %>
          <div class='item-img-content'>
-           <% if item.image.attached? %>
             <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
-           <% else%>
-            <%= image_tag "item-sample.png", class: "item-img" %>
-           <% end %>
              <%# Sold Out 表示の条件があれば適宜修正 %>
-            <% if item.present? %>
              <div class='sold-out'>
-            <%# <<span>Sold Out!!</span> %> 
+             <span>Sold Out!!</span> 
             </div>
-           <% end %>
          </div>
-
        <div class='item-info'>
          <h3 class='item-name'><%= item.name %></h3>
           <div class='item-price'>
@@ -157,6 +150,7 @@
         <% end %>
       </li>
    <% end %>
+  </ul>
   <% else %>
     <%# 商品がない場合の表示 %>
     <ul class='item-lists'>
