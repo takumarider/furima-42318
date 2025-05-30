@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_index, only: [:destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -37,10 +38,19 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item.destroy
+    redirect_to root_path, notice: '商品を削除しました'
+  end
+
   private
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path unless current_user == @item.user
   end
 
   def item_params
