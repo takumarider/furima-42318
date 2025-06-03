@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, only: [:destroy]
+  before_action :move_to_index, only: [:destroy, :edit, :update]
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -25,9 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    return if current_user == @item.user
-
-    redirect_to root_path, alert: '他のユーザーの商品は編集できません'
   end
 
   def update
@@ -50,7 +47,9 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to root_path unless current_user == @item.user
+    return unless current_user != @item.user || @item.order.present?
+
+    redirect_to root_path, alert: '権限がありません'
   end
 
   def item_params
