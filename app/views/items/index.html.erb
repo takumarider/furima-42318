@@ -124,7 +124,6 @@
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >新規投稿商品</div> 
-
  <ul class='item-lists'>
  <% if @items.present? %>
    <% @items.each do |item| %>
@@ -132,10 +131,9 @@
        <%= link_to item_path(item) do %>
          <div class='item-img-content'>
             <%= image_tag item.image.variant(resize: '500x500'), class: "item-img" %>
-             <%# Sold Out 表示の条件があれば適宜修正 %>
-             <div class='sold-out'>
-             <span>Sold Out!!</span> 
-            </div>
+              <% if item.order.present? %>
+              <div class='sold-out'><span>Sold Out!!</span></div>
+              <% end %>
          </div>
        <div class='item-info'>
          <h3 class='item-name'><%= item.name %></h3>
@@ -152,10 +150,8 @@
    <% end %>
   </ul>
   <% else %>
-    <%# 商品がない場合の表示 %>
     <ul class='item-lists'>
       <li class='list'>
-        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
          <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
        </div>
@@ -169,12 +165,10 @@
             </div>
           </div>
         </div>
-      <% end %>
       </li>
     </ul>
   <% end %>
 </div>
-  <%# /商品一覧 %>
 <%= link_to new_item_path, class: 'purchase-btn' do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
