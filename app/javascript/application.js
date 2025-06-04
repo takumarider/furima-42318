@@ -2,6 +2,3 @@
 import "@hotwired/turbo-rails"
 import "./price_calculator"
 import "card"
-
-import Rails from "@rails/ujs"
-Rails.start()  // ← rails-ujs を有効にする！
